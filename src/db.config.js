@@ -12,7 +12,7 @@ const createDatabaseConnection = () => {
   });
   client.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");
+    console.log("createDatabaseConnection Connected!");
   });
   return client;
 };
