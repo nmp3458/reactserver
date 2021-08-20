@@ -13,10 +13,6 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send(port);
-});
-
 const initializeExpress = (irouter) => {
   app.use(cors());
   // parse application/json
