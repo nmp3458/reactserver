@@ -11,7 +11,6 @@ require("dotenv").config();
 
 const port = process.env.PORT || 3000;
 
-const response = "React dashboard" + port;
 
 const initializeExpress = (irouter) => {
   const app = express();
@@ -26,6 +25,9 @@ const initializeExpress = (irouter) => {
     })
   );
   app.use(cookieParser());
+  app.get("/", (req, res) => {
+    res.send(port);
+  });
   app.use('/api',irouter);
   app.use(express.static(path.join(__dirname, "..", "build/")));
 

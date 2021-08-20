@@ -2,6 +2,7 @@
   "name": "uiserver",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
     "remove": "rimraf build",
     "start": "node index.js",
