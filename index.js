@@ -11,13 +11,13 @@ require("dotenv").config();
 
 const port = process.env.PORT || 3000;
 
+const app = express();
+
 app.get("/", (req, res) => {
   res.send(port);
 });
 
 const initializeExpress = (irouter) => {
-  const app = express();
-
   app.use(cors());
   // parse application/json
   app.use(bodyParser.json());
@@ -28,9 +28,9 @@ const initializeExpress = (irouter) => {
     })
   );
   app.use(cookieParser());
- 
-  app.use('/api',irouter);
-  
+
+  app.use("/api", irouter);
+
   app.use(express.static(path.join(__dirname, "..", "build/")));
 
   app.get("*", (req, res) => {
