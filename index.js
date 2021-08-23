@@ -1,19 +1,18 @@
 const express = require("express");
-const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const router = require("./src/route");
+
+const port = process.env.PORT || 3000;
+const staticRoot = require("path").join(__dirname, "", "build");
 
 // .env file can be use
 require("dotenv").config();
 
-const port = process.env.PORT || 3000;
-
-const app = express();
-
 const initializeExpress = (irouter) => {
+  const app = express();
+
   app.use(cors());
   // parse application/json
   app.use(bodyParser.json());
@@ -27,12 +26,10 @@ const initializeExpress = (irouter) => {
 
   app.use("/api", irouter);
 
-  const root = require("path").join(__dirname, "", "build");
-
-  app.use(express.static(root));
+  app.use(express.static(staticRoot));
 
   app.get("*", (req, res) => {
-    res.sendFile("index.html", { root });
+    res.sendFile(__dirname + 'build/index.html');
   });
 
   app.listen(port, () => {
