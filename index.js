@@ -27,10 +27,12 @@ const initializeExpress = (irouter) => {
 
   app.use("/api", irouter);
 
-  app.use(express.static(path.join(__dirname, "..", "build/")));
+  const root = require("path").join(__dirname, "", "build");
+
+  app.use(express.static(root));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/build/index.html"));
+    res.sendFile("index.html", { root });
   });
 
   app.listen(port, () => {
